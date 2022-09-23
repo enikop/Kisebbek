@@ -1,0 +1,61 @@
+package szorgalmi1;
+
+public class Compartment {
+	private int building;
+	private int row;
+	private int column;
+	private int storey;
+	private Product[] product;
+	
+	public Compartment(int building, int row, int column, int storey) {
+		super();
+		this.building = building;
+		this.row = row;
+		this.column = column;
+		this.storey = storey;
+		this.product = new Product[10];
+		for(int i=0; i<10; i++){
+			this.product[i]= new Product("", 0);
+		}
+	}
+	
+	public void addProduct(Product product){
+		for(int i=0; i<10; i++){
+			if(this.product[i].getId()==0) {
+				this.product[i].setName(product.getName());
+				this.product[i].setNumber(product.getNumber());
+			};
+		}
+	}
+	
+	public int getBuilding() {
+		return building;
+	}
+	public void setBuilding(int building) {
+		this.building = building;
+	}
+	public int getRow() {
+		return row;
+	}
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public int getColumn() {
+		return column;
+	}
+	public void setColumn(int column) {
+		this.column = column;
+	}
+	public int getStorey() {
+		return storey;
+	}
+	public void setStorey(int storey) {
+		this.storey = storey;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+}

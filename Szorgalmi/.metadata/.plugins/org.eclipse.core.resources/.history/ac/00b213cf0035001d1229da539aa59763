@@ -1,0 +1,37 @@
+package szorgalmi1;
+
+import java.util.ArrayList;
+
+public class Product {
+	private int id;
+	private int number;
+	private static ArrayList<ProductCodeDecoder> listOfProducts = new ArrayList<ProductCodeDecoder>();
+	public Product(String name, int number) {
+		super();
+		this.name = name;
+		this.number = number;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getId(int id) {
+		return id;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public static ArrayList<ProductCodeDecoder> getListOfProducts() {
+		return listOfProducts;
+	}
+	public static void setListOfProducts(ArrayList<ProductCodeDecoder> listOfProducts) {
+		Product.listOfProducts = listOfProducts;
+	}
+	
+	
+}

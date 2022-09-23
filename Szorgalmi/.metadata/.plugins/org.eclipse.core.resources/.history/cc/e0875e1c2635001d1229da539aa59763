@@ -1,0 +1,336 @@
+package szorgalmi1;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.Scanner;
+
+public class StorageRunner {
+
+	public static void main(String[] args) {
+		//Product.initialize();
+		Compartment comp[] = new Compartment[4];
+		comp[0] = new Compartment(1, 1, 1, 1);
+		comp[0].addProduct("léc", 5);
+		comp[0].addProduct("gerenda", 2);
+		comp[0].addProduct("csavarhúzó", 4);
+		comp[0].addProduct("kalapács", 2);
+		comp[1] = new Compartment(1, 1, 1, 2);
+		comp[1].addProduct("léc", 5);
+		comp[1].addProduct("gerenda", 2);
+		comp[1].addProduct("madzag", 4);
+		comp[2] = new Compartment(2, 1, 1, 1);
+		comp[2].addProduct("léc", 3);
+		comp[2].addProduct("gerenda", 2);
+		comp[3] = new Compartment(2, 1, 1, 2);
+		comp[3].addProduct("madzag", 1);
+		comp[3].addProduct("gerenda", 2);
+		
+		
+		
+		Scanner input = new Scanner(System.in);
+		userInterface(input);
+		input.close();
+		/*writeToFile(file, comp);
+		listProductStock(file, "gerenda");
+
+		readFile(file);
+		insertProduct(file, 0, "kapa", 3);
+		insertProduct(file, 0, "kap", 3);
+		insertProduct(file, 0, "ka", 3);
+		insertProduct(file, 0, "k", 3);
+		insertProduct(file, 0, "apa", 3);
+		insertProduct(file, 0, "pa", 3);
+		insertProduct(file, 0, "a", 3);
+		insertProduct(file, 2, "gerenda", 3);
+		takeOutProduct(file, 1, "léc", 5);
+		insertProduct(file, 1, "lécecske", 3);
+		readFile(file);
+		Product.save();*/
+
+	}
+	
+	private static void userInterface(Scanner input) {
+		Product.initialize();
+		File file = new File("REK.DAT");
+		try {
+			if (file.createNewFile()) {
+				System.out.println("File created: " + file.getName());
+			} else {
+				System.out.println("File already exists.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int choice;
+		do {
+			System.out.println("Mit szeretne csinálni? \n1 Termék betevése\n2 Termék kivétele\n3 Termék listázása\n4 Kilépés");
+			do {
+				while(!input.hasNextInt()) {
+					System.out.println("Számot adjon meg 1-4-ig!");
+				}
+				choice=input.nextInt();
+				input.nextLine();
+				
+			} while(choice!=1 && choice !=2 && choice!=3 && choice!=4);
+			switch(choice) {
+			case 1: handleInsertion(input, file);
+			case 2: handleDeletion(input, file);
+			case 3: handleListing(input, file);
+			}
+		} while(choice!=4);
+		
+		Product.save();
+		
+	}
+	
+	
+
+	private static void handleListing(Scanner input, File file) {
+		System.out.println("Listázandó termék neve: ");
+		listProductStock(file, input.nextLine());
+		
+	}
+
+	private static void handleDeletion(Scanner input, File file) {
+		System.out.println("Melyik rekeszbõl venne ki? (formátum: ép sor oszl em)");
+		String in = input.nextLine();
+		String name;
+		int number = 0;
+		String[] splitin;
+		boolean ok = false;
+		Compartment c = null;
+		do {
+			System.out.println("Melyik rekeszbõl venne ki? (formátum: ép sor oszl em)");
+			in = input.nextLine();
+			splitin = in.split(" ");
+			try {
+				c = new Compartment(Integer.parseInt(splitin[0]), Integer.parseInt(splitin[1]), Integer.parseInt(splitin[2]), Integer.parseInt(splitin[3]));
+				ok=true;
+			} catch(Exception exc) {
+				System.out.println("Négy szóközzel elválasztott számot adjon meg!");
+			}
+			
+		} while(!ok);
+		
+		System.out.println("Kivett termék neve: ");
+		name = input.nextLine();
+		ok=false;
+		do {
+			System.out.println("Darabszám:");
+			in = input.nextLine();
+			try {
+				number=Integer.parseInt(in);
+				if(number>0) {
+					ok=true;
+				}
+			} catch(Exception exc) {
+				System.out.println("Számot adjon meg!");
+			}
+			
+		} while(!ok);
+		 
+		takeOutProduct(file, c, name, number);
+		
+	}
+
+	private static void handleInsertion(Scanner input, File file) {
+		System.out.println("Melyik rekeszbe tenne bele? (formátum: ép sor oszl em)");
+		String in = input.nextLine();
+		String name;
+		int number = 0;
+		String[] splitin;
+		boolean ok = false;
+		Compartment c = null;
+		do {
+			System.out.println("Melyik rekeszbõl venne ki? (formátum: ép sor oszl em)");
+			in = input.nextLine();
+			splitin = in.split(" ");
+			try {
+				c = new Compartment(Integer.parseInt(splitin[0]), Integer.parseInt(splitin[1]), Integer.parseInt(splitin[2]), Integer.parseInt(splitin[3]));
+				ok=true;
+			} catch(Exception exc) {
+				System.out.println("Négy szóközzel elválasztott számot adjon meg!");
+			}
+			
+		} while(!ok);
+		
+		System.out.println("Behelyezett termék neve: ");
+		name = input.nextLine();
+		ok=false;
+		do {
+			System.out.println("Darabszám:");
+			in = input.nextLine();
+			try {
+				number=Integer.parseInt(in);
+				if(number>0) {
+					ok=true;
+				}
+			} catch(Exception exc) {
+				System.out.println("Számot adjon meg!");
+			}
+			
+		} while(!ok);
+		 
+		insertProduct(file, c, name, number);
+		
+	}
+
+	private static void takeOutProduct(File file, Compartment c, String name, int number) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+			int id = Product.convertToId(name);
+			if(id==-2) {
+				throw new Exception("No such product in inventory.");
+			}
+			int currentId, temp;
+			boolean done = false;
+			long pos;
+			raf.skipBytes(Integer.SIZE/8*(index*24+4));
+			pos = raf.getFilePointer();
+			for(int i=0; i<10; i++) {
+				currentId=raf.readInt();
+				if(id==currentId) {
+					pos=raf.getFilePointer();
+					temp= raf.readInt();
+					if(temp < number) {
+						throw new Exception("Not enough ("+temp+") products in the compartment, operation unsuccessful");
+					}
+					temp-=number;
+					if(temp==0) {
+						raf.seek(pos-Integer.SIZE/8);
+						raf.writeInt(-1);
+					}
+					raf.seek(pos);
+					raf.writeInt(temp);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			if(!done) {
+				throw new Exception("There is no stock of the given item in the given compartment.");
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void insertProduct(File file, Compartment c, String name, int number) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+			int id = Product.adderConvertToId(name);
+			int currentId, temp;
+			boolean done = false;
+			long pos;
+			raf.skipBytes(Integer.SIZE/8*(index*24+4));
+			pos = raf.getFilePointer();
+			for(int i=0; i<10; i++) {
+				currentId=raf.readInt();
+				if(id==currentId) {
+					pos=raf.getFilePointer();
+					temp=number+raf.readInt();
+					raf.seek(pos);
+					raf.writeInt(temp);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			raf.seek(pos);
+			for(int i=0; i<10; i++) {
+				pos=raf.getFilePointer();
+				currentId=raf.readInt();
+				if(currentId == -1) {
+					raf.writeInt(number);
+					raf.seek(pos);
+					raf.writeInt(id);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			if(!done) {
+				throw new Exception("No place left for the given item.");
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void listProductStock(File file, String name) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+			int current;
+			long pos1, pos2;
+			System.out.println(name + " készleten van:");
+			for (int i = 0; i < 4; i++) {
+				pos1 = raf.getFilePointer();
+				raf.skipBytes(Integer.SIZE / 8 * 4);
+				for (int j = 0; j < 10; j++) {
+					current = raf.readInt();
+					if (current == Product.convertToId(name)) {
+						pos2 = raf.getFilePointer();
+						raf.seek(pos1);
+						System.out.print(
+								raf.readInt() + " " + raf.readInt() + " " + raf.readInt() + " " + raf.readInt() + ": ");
+						raf.seek(pos2);
+						System.out.println(raf.readInt() + "db");
+						raf.seek(pos1 + Integer.SIZE / 8 * 24);
+						break;
+					}
+					current = raf.readInt();
+
+				}
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void readFile(File file) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+			int id;
+			for (int i = 0; i < 4; i++) {
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				for (int j = 0; j < 10; j++) {
+					id = raf.readInt();
+					System.out.print(Product.convertToName(id) + "(" + id + ") ");
+					System.out.print(raf.readInt() + ", ");
+
+				}
+				System.out.println();
+			}
+			raf.close();
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+	}
+
+	private static void writeToFile(File file, Compartment[] comp) {
+		try {
+			RandomAccessFile raf = new RandomAccessFile(file, "rw");
+			Product product;
+			for (int i = 0; i < comp.length; i++) {
+				raf.writeInt(comp[i].getBuilding());
+				raf.writeInt(comp[i].getRow());
+				raf.writeInt(comp[i].getColumn());
+				raf.writeInt(comp[i].getStorey());
+				for (int j = 0; j < 10; j++) {
+					product = comp[i].getProductListIndex(j);
+					raf.writeInt(product.getId());
+					raf.writeInt(product.getNumber());
+
+				}
+			}
+			raf.close();
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+}

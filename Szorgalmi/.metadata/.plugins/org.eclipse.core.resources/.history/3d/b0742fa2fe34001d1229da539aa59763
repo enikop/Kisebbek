@@ -1,0 +1,6 @@
+package szorgalmi1;
+
+public class ProductCodeDecoder {
+	private String name;
+	private int id;
+}

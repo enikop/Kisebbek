@@ -1,0 +1,104 @@
+package szorgalmi1;
+
+public class Compartment {
+	private int building;
+	private int row;
+	private int column;
+	private int storey;
+	private Product[] productList;
+	
+	public Compartment(int building, int row, int column, int storey) {
+		super();
+		this.building = building;
+		this.row = row;
+		this.column = column;
+		this.storey = storey;
+		this.productList = new Product[10];
+		for(int i=0; i<10; i++){
+			this.productList[i]= new Product("", -1);
+		}
+	}
+	
+	public void addProduct(Product product){
+		boolean ok = false;
+		try {
+			for(int i=0; i<10; i++){
+				if(this.productList[i].getId()==0) {
+					this.productList[i] = product;
+					ok = true;
+				};
+			}
+			if(!ok) {
+				throw new Exception("Too many products! (Max 10)");
+			}
+			
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+		
+	}
+	public void addProduct(String name, int number){
+		boolean ok = false;
+		try {
+			for(int i=0; i<10 && !ok; i++){
+				if(this.productList[i].getName()==name) {
+					this.productList[i].addToNumber(number);
+					ok = true;
+				};
+			}
+			for(int i=0; i<10 && !ok; i++){
+				if(this.productList[i].getId()==0) {
+					this.productList[i] = new Product(name, number);
+					ok = true;
+				};
+			}
+			if(!ok) {
+				throw new Exception("Too many products! (Max 10)");
+			}
+			
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+		
+	}
+	
+	public int getBuilding() {
+		return building;
+	}
+	public void setBuilding(int building) {
+		this.building = building;
+	}
+	public int getRow() {
+		return row;
+	}
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public int getColumn() {
+		return column;
+	}
+	public void setColumn(int column) {
+		this.column = column;
+	}
+	public int getStorey() {
+		return storey;
+	}
+	public void setStorey(int storey) {
+		this.storey = storey;
+	}
+	public Product[] getProductList() {
+		return productList;
+	}
+
+	@Override
+	public String toString() {
+		String output = "";
+		for(int i=0; i<productList.length; i++) {
+			if(productList[i].getId()!=-1) {
+				output = output + productList[i].getName()+": "+productList[i].getNumber()+" ";
+			}
+		}
+		return "Compartment [building=" + building + ", row=" + row + ", column=" + column + ", storey=" + storey + "]"
+				+ "Products:"+output;
+	}
+}

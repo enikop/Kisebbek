@@ -1,0 +1,581 @@
+!SESSION 2022-09-15 15:29:40.057 -----------------------------------------------
+eclipse.buildId=4.22.0.I20211124-1800
+java.version=17.0.2
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=hu_HU
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2022-09-15 15:30:55.163
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-09-15 15:30:55.165
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6b61a4b0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5c00de0d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-09-15 15:30:55.165
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.search.ui.performTextSearchWorkspace,Find Text in Workspace,
+		Searches the files in the workspace for specific text.,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6278371a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,hu,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@c6a1be2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-09-15 15:30:55.165
+!MESSAGE A conflict occurred for ALT+SHIFT+X R:
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.run,Run RAP Application,
+		Run RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6a486afb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
+		Run the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@30623109,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-09-15 15:30:55.165
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@138110f8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4fe8ac61,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-09-15 15:30:55.165
+!MESSAGE A conflict occurred for ALT+SHIFT+D R:
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug,Debug RAP Application,
+		Debug RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@665e18d5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
+		Debug the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4795876e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-09-15 15:31:27.162
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\encip'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2022-09-15 20:53:45.423
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package szorgalmi1;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.Scanner;
+
+public class StorageRunner {
+
+	public static void main(String[] args) {
+		//Product.initialize();
+		Compartment comp[] = new Compartment[4];
+		comp[0] = new Compartment(1, 1, 1, 1);
+		comp[0].addProduct("léc", 5);
+		comp[0].addProduct("gerenda", 2);
+		comp[0].addProduct("csavarhúzó", 4);
+		comp[0].addProduct("kalapács", 2);
+		comp[1] = new Compartment(1, 1, 1, 2);
+		comp[1].addProduct("léc", 5);
+		comp[1].addProduct("gerenda", 2);
+		comp[1].addProduct("madzag", 4);
+		comp[2] = new Compartment(2, 1, 1, 1);
+		comp[2].addProduct("léc", 3);
+		comp[2].addProduct("gerenda", 2);
+		comp[3] = new Compartment(2, 1, 1, 2);
+		comp[3].addProduct("madzag", 1);
+		comp[3].addProduct("gerenda", 2);
+		
+		
+		
+		Scanner input = new Scanner(System.in);
+		userInterface(input);
+		input.close();
+		/*writeToFile(file, comp);
+		listProductStock(file, "gerenda");
+
+		readFile(file);
+		insertProduct(file, 0, "kapa", 3);
+		insertProduct(file, 0, "kap", 3);
+		insertProduct(file, 0, "ka", 3);
+		insertProduct(file, 0, "k", 3);
+		insertProduct(file, 0, "apa", 3);
+		insertProduct(file, 0, "pa", 3);
+		insertProduct(file, 0, "a", 3);
+		insertProduct(file, 2, "gerenda", 3);
+		takeOutProduct(file, 1, "léc", 5);
+		insertProduct(file, 1, "lécecske", 3);
+		readFile(file);
+		Product.save();*/
+
+	}
+	
+	private static void userInterface(Scanner input) {
+		Product.initialize();
+		File file = new File("REK.DAT");
+		try {
+			if (file.createNewFile()) {
+				System.out.println("File created: " + file.getName());
+			} else {
+				System.out.println("File already exists.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int choice;
+		do {
+			readFile(file);
+			System.out.println("Mit szeretne csinálni? \n1 Termék betevése\n2 Termék kivétele\n3 Termék listázása\n4 Kilépés");
+			do {
+				while(!input.hasNextInt()) {
+					System.out.println("Számot adjon meg 1-4-ig!");
+				}
+				choice=input.nextInt();
+				input.nextLine();
+				
+			} while(choice!=1 && choice !=2 && choice!=3 && choice!=4);
+			switch(choice) {
+			case 1: handleInsertion(input, file);
+			case 2: handleDeletion(input, file);
+			case 3: handleListing(input, file);
+			}
+		} while(choice!=4);
+		
+		Product.save();
+		
+	}
+	
+	
+
+	private static void handleListing(Scanner input, File file) {
+		System.out.println("Listázandó termék neve: ");
+		listProductStock(file, input.nextLine());
+		
+	}
+
+	private static void handleDeletion(Scanner input, File file) {
+		String in;
+		String name;
+		int number = 0;
+		String[] splitin;
+		boolean ok = false;
+		Compartment c = null;
+		do {
+			System.out.println("Melyik rekeszből venne ki? (formátum: ép sor oszl em)");
+			in = input.nextLine();
+			splitin = in.split(" ");
+			try {
+				c = new Compartment(Integer.parseInt(splitin[0]), Integer.parseInt(splitin[1]), Integer.parseInt(splitin[2]), Integer.parseInt(splitin[3]));
+				ok=true;
+			} catch(Exception exc) {
+				System.out.println("Négy szóközzel elválasztott számot adjon meg!");
+			}
+			
+		} while(!ok);
+		
+		System.out.println("Kivett termék neve: ");
+		name = input.nextLine();
+		ok=false;
+		do {
+			System.out.println("Darabszám:");
+			in = input.nextLine();
+			try {
+				number=Integer.parseInt(in);
+				if(number>0) {
+					ok=true;
+				}
+			} catch(Exception exc) {
+				System.out.println("Számot adjon meg!");
+			}
+			
+		} while(!ok);
+		 
+		takeOutProduct(file, c, name, number);
+		
+	}
+
+	private static void handleInsertion(Scanner input, File file) {
+		String in;
+		String name;
+		int number = 0;
+		String[] splitin;
+		boolean ok = false;
+		Compartment c = null;
+		do {
+			System.out.println("Melyik rekeszbe tenne bele? (formátum: ép sor oszl em)");
+			in = input.nextLine();
+			splitin = in.split(" ");
+			try {
+				c = new Compartment(Integer.parseInt(splitin[0]), Integer.parseInt(splitin[1]), Integer.parseInt(splitin[2]), Integer.parseInt(splitin[3]));
+				ok=true;
+			} catch(Exception exc) {
+				System.out.println("Négy szóközzel elválasztott számot adjon meg!");
+			}
+			
+		} while(!ok);
+		
+		System.out.println("Behelyezett termék neve: ");
+		name = input.nextLine();
+		ok=false;
+		do {
+			System.out.println("Darabszám:");
+			in = input.nextLine();
+			try {
+				number=Integer.parseInt(in);
+				if(number>0) {
+					ok=true;
+				}
+			} catch(Exception exc) {
+				System.out.println("Számot adjon meg!");
+			}
+			
+		} while(!ok);
+		 
+		insertProduct(file, c, name, number);
+		
+	}
+
+	private static void takeOutProduct(File file, Compartment c, String name, int number) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+			int id = Product.convertToId(name);
+			if(id==-2) {
+				throw new Exception("No such product in inventory.");
+			}
+			int currentId, temp;
+			boolean done = false;
+			long pos = -1;
+			(raf.length()/(24*Integer.SIZE/8))
+			for(int i=0; i< raf.length()/(24*Integer.SIZE/8); i++) {
+				raf.seek(i*24*Integer.SIZE/8);
+				if(raf.readInt()==c.getBuilding() && raf.readInt()==c.getRow()
+						&& raf.readInt() == c.getColumn() && raf.readInt() == c.getStorey()) {
+					pos = raf.getFilePointer();
+					break;
+				}		
+			}
+			if(pos==-1) {
+				throw new Exception("The specified compartment does not exist.");
+			}
+			for(int i=0; i<10; i++) {
+				currentId=raf.readInt();
+				if(id==currentId) {
+					pos=raf.getFilePointer();
+					temp= raf.readInt();
+					if(temp < number) {
+						throw new Exception("Not enough ("+temp+") products in the compartment, operation unsuccessful");
+					}
+					temp-=number;
+					if(temp==0) {
+						raf.seek(pos-Integer.SIZE/8);
+						raf.writeInt(-1);
+					}
+					raf.seek(pos);
+					raf.writeInt(temp);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			if(!done) {
+				throw new Exception("There is no stock of the given item in the given compartment.");
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void insertProduct(File file, Compartment c, String name, int number) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+			int id = Product.adderConvertToId(name);
+			int currentId, temp;
+			boolean done = false;
+			long pos = -1;
+			for(int i=0; i<raf.length()/(24*Integer.SIZE/8); i++) {
+				raf.seek(i*24*Integer.SIZE/8);
+				if(raf.readInt()==c.getBuilding() && raf.readInt()==c.getRow()
+						&& raf.readInt() == c.getColumn() && raf.readInt() == c.getStorey()) {
+					pos = raf.getFilePointer();
+					break;
+				}		
+			}
+			if(pos==-1) {
+				throw new Exception("The specified compartment does not exist.");
+			}
+			for(int i=0; i<10; i++) {
+				currentId=raf.readInt();
+				if(id==currentId) {
+					pos=raf.getFilePointer();
+					temp=number+raf.readInt();
+					raf.seek(pos);
+					raf.writeInt(temp);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			raf.seek(pos);
+			for(int i=0; i<10; i++) {
+				pos=raf.getFilePointer();
+				currentId=raf.readInt();
+				if(currentId == -1) {
+					raf.writeInt(number);
+					raf.seek(pos);
+					raf.writeInt(id);
+					done=true;
+					break;
+				}
+				raf.readInt();
+			}
+			if(!done) {
+				throw new Exception("No place left for the given item.");
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void listProductStock(File file, String name) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+			int current;
+			long pos1, pos2;
+			System.out.println(name + " készleten van:");
+			for (int i = 0; i < 4; i++) {
+				pos1 = raf.getFilePointer();
+				raf.skipBytes(Integer.SIZE / 8 * 4);
+				for (int j = 0; j < 10; j++) {
+					current = raf.readInt();
+					if (current == Product.convertToId(name)) {
+						pos2 = raf.getFilePointer();
+						raf.seek(pos1);
+						System.out.print(
+								raf.readInt() + " " + raf.readInt() + " " + raf.readInt() + " " + raf.readInt() + ": ");
+						raf.seek(pos2);
+						System.out.println(raf.readInt() + "db");
+						raf.seek(pos1 + Integer.SIZE / 8 * 24);
+						break;
+					}
+					current = raf.readInt();
+
+				}
+			}
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+	private static void readFile(File file) {
+		try(RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+			int id;
+			for (int i = 0; i < 4; i++) {
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				System.out.print(raf.readInt() + " ");
+				for (int j = 0; j < 10; j++) {
+					id = raf.readInt();
+					System.out.print(Product.convertToName(id) + "(" + id + ") ");
+					System.out.print(raf.readInt() + ", ");
+
+				}
+				System.out.println();
+			}
+			raf.close();
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+	}
+
+	private static void writeToFile(File file, Compartment[] comp) {
+		try {
+			RandomAccessFile raf = new RandomAccessFile(file, "rw");
+			Product product;
+			for (int i = 0; i < comp.length; i++) {
+				raf.writeInt(comp[i].getBuilding());
+				raf.writeInt(comp[i].getRow());
+				raf.writeInt(comp[i].getColumn());
+				raf.writeInt(comp[i].getStorey());
+				for (int j = 0; j < 10; j++) {
+					product = comp[i].getProductListIndex(j);
+					raf.writeInt(product.getId());
+					raf.writeInt(product.getNumber());
+
+				}
+			}
+			raf.close();
+		} catch (Exception exc) {
+			System.out.println(exc.getMessage());
+		}
+
+	}
+
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2047)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3853)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1953)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1990)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3095)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3278)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3055)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3390)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1534)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:521)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2022-09-15 20:53:45.441
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2047)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3853)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1953)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1990)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3095)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3278)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3055)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3390)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1534)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:521)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2022-09-15 20:53:45.450
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.InfixExpression.setOperator(InfixExpression.java:383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1287)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2047)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToParenthesizedExpression(ASTConverter.java:3853)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1953)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1990)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3095)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1383)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3278)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3055)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:751)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3390)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1534)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:521)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:201)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:597)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1142)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1319)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)

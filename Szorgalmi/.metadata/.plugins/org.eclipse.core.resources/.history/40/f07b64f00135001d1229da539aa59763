@@ -1,0 +1,64 @@
+package szorgalmi1;
+
+import java.util.ArrayList;
+
+public class Product {
+	private int id;
+	private int number;
+	private String name;
+	private static ArrayList<ProductCodeDecoder> listOfProducts = new ArrayList<ProductCodeDecoder>();
+	public Product(String name, int number) {
+		super();
+		this.name = name;
+		this.number = number;
+		this.id = convertToId(name);
+	}
+	public Product(int id, int number) {
+		super();
+		this.number = number;
+		this.id = id;
+		this.name = convertToName(id);
+	}
+	private static int convertToId(String name) {
+		for(int i=0; i<listOfProducts.size(); i++) {
+			if(name.equalsIgnoreCase(listOfProducts.get(i).getName())) {
+				return listOfProducts.get(i).getId();
+			}
+		}
+		listOfProducts.add(new ProductCodeDecoder(name, listOfProducts.size()));
+		return listOfProducts.size()-1;	
+		
+	}
+	private static String convertToName(int id) {
+		for(int i=0; i<listOfProducts.size(); i++) {
+			if(id == listOfProducts.get(i).getId()) {
+				return listOfProducts.get(i).getName();
+			}
+		}
+		return null;	
+		
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getId() {
+		return id;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public static ArrayList<ProductCodeDecoder> getListOfProducts() {
+		return listOfProducts;
+	}
+	public static void setListOfProducts(ArrayList<ProductCodeDecoder> listOfProducts) {
+		Product.listOfProducts = listOfProducts;
+	}
+	
+	
+}

@@ -1,0 +1,6 @@
+package szorgalmi1;
+
+public class Product {
+	private int number;
+	private int 
+}
