@@ -1,0 +1,43 @@
+<ER_DIAGRAM nev="Bolt">
+<EGYED nev="Vásárlók">
+ <TULAJDONSAG nev="vid" tobberteku="N"/>
+ <TULAJDONSAG nev="név" tobberteku="N"/>
+ <TULAJDONSAG nev="telefon" tobberteku="I"/>
+ <TULAJDONSAG nev="cím" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Termékek">
+ <TULAJDONSAG nev="tid" tobberteku="N"/>
+ <TULAJDONSAG nev="termék_név" tobberteku="N"/>
+ <TULAJDONSAG nev="egységár" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Rendelések">
+ <TULAJDONSAG nev="rid" tobberteku="N"/>
+ <TULAJDONSAG nev="dátum" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Kuponok">
+ <TULAJDONSAG nev="kid" tobberteku="N"/>
+ <TULAJDONSAG nev="százalék" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Személyzet">
+ <TULAJDONSAG nev="szeid" tobberteku="N"/>
+ <TULAJDONSAG nev="név" tobberteku="N"/>
+ <TULAJDONSAG nev="beosztás" tobberteku="N"/>
+ <TULAJDONSAG nev="elérhetőség" tobberteku="I"/>
+</EGYED>
+<EGYED nev="Szállítók">
+ <TULAJDONSAG nev="száid" tobberteku="N"/>
+ <TULAJDONSAG nev="cég" tobberteku="N"/>
+ <TULAJDONSAG nev="telefon" tobberteku="I"/>
+</EGYED>
+<EGYED nev="Katalógus">
+ <TULAJDONSAG nev="kid" tobberteku="N"/>
+ <TULAJDONSAG nev="dátum" tobberteku="N"/>
+</EGYED>
+<KAPCSOLAT EGYED_A ="Vásárlók" EGYED_B="Rendelések" szamossag="1:N"/>
+<KAPCSOLAT EGYED_A ="Rendelések" EGYED_B="Termékek" szamossag="N:M"/>
+<KAPCSOLAT EGYED_A ="Kuponok" EGYED_B="Termékek" szamossag="1:1"/>
+<KAPCSOLAT EGYED_A ="Rendelések" EGYED_B="Szállítók" szamossag="1:N"/>
+<KAPCSOLAT EGYED_A ="Katalógus" EGYED_B="Kuponok" szamossag="1:1"/>
+<KAPCSOLAT EGYED_A ="Katalógus" EGYED_B="Személyzet" szamossag="N:M"/>
+<KAPCSOLAT EGYED_A ="Személyzet" EGYED_B="Rendelések" szamossag="1:N"/>
+</ER_DIAGRAM>

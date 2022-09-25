@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<style>
+    body {
+        background-color: #525E75;
+        padding: 0px 3%;
+        margin: 0px;
+        font-family: Garamond, 'Times New Roman', Times, serif;
+    }
+
+    div {
+        margin: 10px;
+        margin-bottom: 15px;
+        font-size: 15pt;
+    }
+
+    #title {
+        font-size: 20pt;
+        text-transform: capitalize;
+    }
+
+    .container {
+        background-color: #F1DDBF;
+        padding: 10px;
+        margin-top: 0px;
+        text-align: center;
+        min-width: 1020px;
+    }
+
+    svg {
+        background-color: #fff;
+        border-style: double;
+        border-width: 10px;
+        border-color: black;
+    }
+
+    text {
+        stroke-width: 0;
+        fill: black;
+    }
+
+    .link {
+        stroke: black;
+        stroke-width: 2px;
+    }
+
+    .relation {
+        fill: #F1DDBF;
+        stroke-width: 2px;
+        stroke: black;
+    }
+
+    .attribute {
+        fill: #92BA92;
+        stroke-width: 2px;
+        stroke: black;
+    }
+
+    .entity {
+        stroke-width: 2px;
+        stroke: black;
+        fill: #525E75;
+    }
+
+    hr {
+        height: 1px;
+        width: 60%;
+        border-width: 0;
+        color: #525E75;
+        background-color: #525E75
+    }
+</style>
+
+<body>
+    <div class='container'>
+        <div>
+            <div id='title'>ER diagram generátor</div>
+            <hr>
+            <div id='maintext'>Töltsön be egy txt filet, amely a megadott formátumban tartalmazza az ER diagram elemeit!
+            </div>
+            <div><input type='file' id='fileinput' /><button id='example'>Példa adatsorral</button></div>
+        </div>
+    </div>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+        let builtInExample = '<ER_DIAGRAM nev="Vidámpark"><EGYED nev="Attrakciók"> <TULAJDONSAG nev="aid" tobberteku="N"/> <TULAJDONSAG nev="attrakció_név" tobberteku="N"/> <TULAJDONSAG nev="kezdet" tobberteku="I"/> <TULAJDONSAG nev="hossz" tobberteku="N"/></EGYED><EGYED nev="Helyszínek"><TULAJDONSAG nev="hid" tobberteku="N"/><TULAJDONSAG nev="hely_név" tobberteku="N"/></EGYED><EGYED nev="Látogatók"><TULAJDONSAG nev="lid" tobberteku="N"/><TULAJDONSAG nev="érkezés" tobberteku="N"/></EGYED><KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Látogatók" szamossag="N:M"/><KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Attrakciók" szamossag="1:N"/></ER_DIAGRAM>';
+        let width = 1000;
+        let height = 1000;
+        let nodeHeight = 50;
+        let nodeWidth = 120;
+        let fontSize = 14;
+        let allText;
+        let adjustment = 1;
+        let links = [];
+        let nodes = [];
+        document.getElementById('example').addEventListener('click', function(){
+            allText = builtInExample;
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(allText, 'text/xml');
+            read(xmlDoc);
+            document.getElementById('fileinput').style.display = 'none';
+            document.getElementById('example').style.display = 'none';
+            document.getElementById('maintext').innerText += '\nAz elkészült ER diagram:';
+            drawGraph();
+
+        });
+        document.getElementById('fileinput').addEventListener('change', function () {
+            var fr = new FileReader();
+            if (fr == null) {
+                alert('Hibás fájl, próbálja újra!');
+                window.location.reload();
+                return;
+            }
+            fr.onload = function () {
+                allText = fr.result;
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(allText, 'text/xml');
+                read(xmlDoc);
+                if (nodes.length > 40) {
+                    adjustment = 40 / nodes.length;
+                    nodeHeight = nodeHeight * adjustment;
+                    nodeWidth = nodeWidth * adjustment;
+                    fontSize = fontSize * adjustment;
+                }
+                if (nodes.length > 0) {
+                    document.getElementById('fileinput').style.display = 'none';
+                    document.getElementById('example').style.display = 'none';
+                    document.getElementById('maintext').innerText += '\nAz elkészült ER diagram:';
+                    drawGraph();
+                }
+
+            }
+            fr.readAsText(this.files[0]);
+        });
+        function read(xmlDoc) {
+            let entities = xmlDoc.getElementsByTagName('EGYED');
+            if (entities.length == 0) {
+                alert('Hibás fájl, próbálja újra!');
+                window.location.reload();
+                return;
+            }
+            let stepAngle = 2 * Math.PI / entities.length;
+            for (let i = 0; i < entities.length; i++) {
+                nodes.push({ name: entities[i].getAttribute('nev'), x: Math.round(200 * Math.cos(stepAngle * i)), y: Math.round(200 * Math.sin(stepAngle * i)), type: 'entity' });
+                let indexOfEntity = nodes.length - 1;
+                let attributes = entities[i].getElementsByTagName('TULAJDONSAG');
+                for (let j = 0; j < attributes.length; j++) {
+                    nodes.push({ name: attributes[j].getAttribute('nev'), x: Math.round(210 * Math.cos(stepAngle * i)), y: Math.round(210 * Math.sin(stepAngle * i)), type: 'attribute', multiplicity: attributes[j].getAttribute('tobberteku') });
+                    links.push({ source: indexOfEntity, target: nodes.length - 1 });
+                }
+            }
+            let relations = xmlDoc.getElementsByTagName('KAPCSOLAT');
+            for (let i = 0; i < relations.length; i++) {
+                let entityA = nodes.findIndex(element => element.name == relations[i].getAttribute('EGYED_A'));
+                let entityB = nodes.findIndex(element => element.name == relations[i].getAttribute('EGYED_B'));
+                if (entityA == -1 || entityB == -1) {
+                    alert('Hibás fájl, próbálja újra!');
+                    window.location.reload();
+                    return;
+                }
+                if (entityA == entityB) {
+                    nodes.push({ name: relations[i].getAttribute('nev'), type: 'relation', x: 1.2 * nodes[entityA].x, y: 1.2 * nodes[entityA].y, multiplicity: relations[i].getAttribute('szamossag') });
+                }
+                else if (nodes.filter(element => element.name == relations[i].getAttribute('EGYED_A')).length == 1 || nodes.filter(element => element.name == relations[i].getAttribute('EGYED_B')).length == 1) {
+                    nodes.push({ name: relations[i].getAttribute('nev'), type: 'relation', x: (nodes[entityB].x + nodes[entityA].x) / 2, y: (nodes[entityB].y + nodes[entityA].y) / 2, multiplicity: relations[i].getAttribute('szamossag') });
+                } else {
+                    nodes.push({ name: relations[i].getAttribute('nev'), type: 'relation', x: 0, y: 0, multiplicity: relations[i].getAttribute('szamossag') });
+                }
+                links.push({ source: entityA, target: nodes.length - 1 });
+                links.push({ source: nodes.length - 1, target: entityB });
+            }
+        }
+
+        function drawGraph() {
+            let k = Math.sqrt(nodes.length / (width * height));
+            let svg = d3.select('.container').append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            let force = d3.forceSimulation(nodes)
+                .force('charge', d3.forceManyBody(-300 / k))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('link', d3.forceLink().links(links))
+                .force('link', d3.forceLink().distance(function (d) { return d.distance }).strength(0.1))
+                .force('collide', d3.forceCollide(function (d) { return 50 * adjustment }))
+                .force('gravity', d3.forceCollide(function (d) { return 10 * k }))
+                .on('tick', tick);
+            let link = svg.selectAll('.link')
+                .data(links)
+                .enter().append('line')
+                .attr('class', 'link');
+            let node = svg.selectAll('.node')
+                .data(nodes)
+                .enter().append('g')
+                .attr('width', nodeWidth)
+                .attr('height', nodeHeight)
+                .attr('class', 'node');
+            let nodeList = document.getElementsByClassName('node');
+
+            for (let i = 0; i < nodeList.length; i++) {
+                setInterval(() => {
+                    let xCoord = Math.max(Math.min(nodes[i].x - nodeWidth / 2, width - nodeWidth), 0),
+                        yCoord = Math.max(Math.min(nodes[i].y - nodeHeight / 2, height - nodeHeight), 0);
+
+                    if (nodes[i].type == 'relation') {
+                        nodeList[i].classList.add('relation');
+                        nodeList[i].setAttribute('transform', 'rotate(45,' + (xCoord + nodeWidth / 2) + ', ' + (yCoord + nodeHeight / 2) + ')');
+                        nodeList[i].innerHTML = '<rect width="' + nodeHeight + '" height="' + nodeHeight + '" x=' + (xCoord + (nodeWidth - nodeHeight) / 2) + ' y=' + yCoord + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 40 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].multiplicity + '</text>';
+                    } else if (nodes[i].type == 'attribute') {
+                        nodeList[i].classList.add('attribute');
+                        nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
+                        if (nodes[i].multiplicity == 'I') {
+                            nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><ellipse rx="' + (nodeWidth / 2 - 4 * adjustment) + '" ry="' + (nodeHeight / 2 - 4 * adjustment) + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
+                        }
+                    } else {
+                        nodeList[i].classList.add('entity');
+                        nodeList[i].innerHTML = '<rect width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + xCoord + ' y=' + yCoord + ' /><text font-family="verdana" stroke-width="0" fill = "black" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 10 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
+                    }
+                }, 100);
+            }
+
+            function tick(e) {
+                node.attr('x', function (d) { return Math.max(Math.min(d.x - nodeWidth / 2, width - nodeWidth), 0); })
+                    .attr('y', function (d) { return Math.max(Math.min(d.y - nodeHeight / 2, height - nodeHeight), 0); });
+                link.attr('x1', function (d) { return Math.max(Math.min(d.source.x, width - nodeWidth), 0); })
+                    .attr('x2', function (d) { return Math.max(Math.min(d.target.x, width - nodeWidth), 0); })
+                    .attr('y1', function (d) { return Math.max(Math.min(d.source.y, height - nodeHeight), 0); })
+                    .attr('y2', function (d) { return Math.max(Math.min(d.target.y, height - nodeHeight), 0); });
+            }
+        }
+
+
+
+    </script>
+</body>

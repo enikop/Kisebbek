@@ -1,0 +1,32 @@
+<ER_DIAGRAM nev="Vidámpark">
+<EGYED nev="Attrakciók">
+ <TULAJDONSAG nev="aid" tobberteku="N"/>
+ <TULAJDONSAG nev="attrakció_név" tobberteku="N"/>
+ <TULAJDONSAG nev="kezdet" tobberteku="I"/>
+ <TULAJDONSAG nev="hossz" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Helyszínek">
+ <TULAJDONSAG nev="hid" tobberteku="N"/>
+ <TULAJDONSAG nev="hely_név" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Látogatók">
+ <TULAJDONSAG nev="lid" tobberteku="N"/>
+ <TULAJDONSAG nev="érkezés" tobberteku="N"/>
+</EGYED>
+<EGYED nev="Belépőjegyek">
+ <TULAJDONSAG nev="bid" tobberteku="N"/>
+ <TULAJDONSAG nev="ár" tobberteku="N"/>
+ <TULAJDONSAG nev="kedvezmény" tobberteku="I"/>
+</EGYED>
+<EGYED nev="Személyzet">
+ <TULAJDONSAG nev="szid" tobberteku="N"/>
+ <TULAJDONSAG nev="teljes_név" tobberteku="N"/>
+ <TULAJDONSAG nev="telefon" tobberteku="I"/>
+ <TULAJDONSAG nev="munkaviszony" tobberteku="N"/>
+</EGYED>
+<KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Látogatók" szamossag="N:M"/>
+<KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Attrakciók" szamossag="1:N"/>
+<KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Helyszínek" szamossag="N:M"/>
+<KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Személyzet" szamossag="1:N"/>
+<KAPCSOLAT EGYED_A ="Belépőjegyek" EGYED_B="Látogatók" szamossag="1:1"/>
+</ER_DIAGRAM>
