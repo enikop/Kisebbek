@@ -1,28 +1,28 @@
 <ER_DIAGRAM nev="Vidámpark">
 <EGYED nev="Attrakciók">
- <TULAJDONSAG nev="aid" tobberteku="N"/>
- <TULAJDONSAG nev="attrakció_név" tobberteku="N"/>
- <TULAJDONSAG nev="kezdet" tobberteku="I"/>
- <TULAJDONSAG nev="hossz" tobberteku="N"/>
+ <TULAJDONSAG nev="aid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="attrakció_név" id="N" tobberteku="N"/>
+ <TULAJDONSAG nev="kezdet" id="N" tobberteku="I"/>
+ <TULAJDONSAG nev="hossz" id="N" tobberteku="N"/>
 </EGYED>
 <EGYED nev="Helyszínek">
- <TULAJDONSAG nev="hid" tobberteku="N"/>
- <TULAJDONSAG nev="hely_név" tobberteku="N"/>
+ <TULAJDONSAG nev="hid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="hely_név" id="N" tobberteku="N"/>
 </EGYED>
 <EGYED nev="Látogatók">
- <TULAJDONSAG nev="lid" tobberteku="N"/>
- <TULAJDONSAG nev="érkezés" tobberteku="N"/>
+ <TULAJDONSAG nev="lid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="érkezés" id="N" tobberteku="N"/>
 </EGYED>
 <EGYED nev="Belépőjegyek">
- <TULAJDONSAG nev="bid" tobberteku="N"/>
- <TULAJDONSAG nev="ár" tobberteku="N"/>
- <TULAJDONSAG nev="kedvezmény" tobberteku="I"/>
+ <TULAJDONSAG nev="bid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="ár" id="N" tobberteku="N"/>
+ <TULAJDONSAG nev="kedvezmény" id="N" tobberteku="I"/>
 </EGYED>
 <EGYED nev="Személyzet">
- <TULAJDONSAG nev="szid" tobberteku="N"/>
- <TULAJDONSAG nev="teljes_név" tobberteku="N"/>
- <TULAJDONSAG nev="telefon" tobberteku="I"/>
- <TULAJDONSAG nev="munkaviszony" tobberteku="N"/>
+ <TULAJDONSAG nev="szid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="teljes_név" id="N" tobberteku="N"/>
+ <TULAJDONSAG nev="telefon" id="N" tobberteku="I"/>
+ <TULAJDONSAG nev="munkaviszony" id="N" tobberteku="N"/>
 </EGYED>
 <KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Látogatók" szamossag="N:M"/>
 <KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Attrakciók" szamossag="1:N"/>

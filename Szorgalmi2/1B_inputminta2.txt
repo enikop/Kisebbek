@@ -1,37 +1,37 @@
 <ER_DIAGRAM nev="Bolt">
 <EGYED nev="Vásárlók">
- <TULAJDONSAG nev="vid" tobberteku="N"/>
- <TULAJDONSAG nev="név" tobberteku="N"/>
- <TULAJDONSAG nev="telefon" tobberteku="I"/>
- <TULAJDONSAG nev="cím" tobberteku="N"/>
+ <TULAJDONSAG nev="vid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="név"  id="N"  tobberteku="N"/>
+ <TULAJDONSAG nev="telefon"  id="N"  tobberteku="I"/>
+ <TULAJDONSAG nev="cím"  id="N"  tobberteku="N"/>
 </EGYED>
 <EGYED nev="Termékek">
- <TULAJDONSAG nev="tid" tobberteku="N"/>
- <TULAJDONSAG nev="termék_név" tobberteku="N"/>
+ <TULAJDONSAG nev="tid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="termék_név"  id="N"  tobberteku="N"/>
  <TULAJDONSAG nev="egységár" tobberteku="N"/>
 </EGYED>
 <EGYED nev="Rendelések">
- <TULAJDONSAG nev="rid" tobberteku="N"/>
- <TULAJDONSAG nev="dátum" tobberteku="N"/>
+ <TULAJDONSAG nev="rid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="dátum"  id="N"  tobberteku="N"/>
 </EGYED>
 <EGYED nev="Kuponok">
- <TULAJDONSAG nev="kid" tobberteku="N"/>
- <TULAJDONSAG nev="százalék" tobberteku="N"/>
+ <TULAJDONSAG nev="kid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="százalék"  id="N"  tobberteku="N"/>
 </EGYED>
 <EGYED nev="Személyzet">
- <TULAJDONSAG nev="szeid" tobberteku="N"/>
- <TULAJDONSAG nev="név" tobberteku="N"/>
- <TULAJDONSAG nev="beosztás" tobberteku="N"/>
- <TULAJDONSAG nev="elérhetőség" tobberteku="I"/>
+ <TULAJDONSAG nev="szeid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="név"  id="N"  tobberteku="N"/>
+ <TULAJDONSAG nev="beosztás"  id="N"  tobberteku="N"/>
+ <TULAJDONSAG nev="elérhetőség"  id="N"  tobberteku="I"/>
 </EGYED>
 <EGYED nev="Szállítók">
- <TULAJDONSAG nev="száid" tobberteku="N"/>
- <TULAJDONSAG nev="cég" tobberteku="N"/>
- <TULAJDONSAG nev="telefon" tobberteku="I"/>
+ <TULAJDONSAG nev="száid" id="I" tobberteku="N"/>
+ <TULAJDONSAG nev="cég"  id="N"  tobberteku="N"/>
+ <TULAJDONSAG nev="telefon"  id="N"  tobberteku="I"/>
 </EGYED>
 <EGYED nev="Katalógus">
- <TULAJDONSAG nev="kid" tobberteku="N"/>
- <TULAJDONSAG nev="dátum" tobberteku="N"/>
+ <TULAJDONSAG nev="kid"  id="I"  tobberteku="N"/>
+ <TULAJDONSAG nev="dátum"  id="N"  tobberteku="N"/>
 </EGYED>
 <KAPCSOLAT EGYED_A ="Vásárlók" EGYED_B="Rendelések" szamossag="1:N"/>
 <KAPCSOLAT EGYED_A ="Rendelések" EGYED_B="Termékek" szamossag="N:M"/>

@@ -83,7 +83,7 @@
     </div>
     <script src='https://d3js.org/d3.v7.min.js'></script>
     <script>
-        let builtInExample = '<ER_DIAGRAM nev="Vidámpark"><EGYED nev="Attrakciók"> <TULAJDONSAG nev="aid" tobberteku="N"/> <TULAJDONSAG nev="attrakció_név" tobberteku="N"/> <TULAJDONSAG nev="kezdet" tobberteku="I"/> <TULAJDONSAG nev="hossz" tobberteku="N"/></EGYED><EGYED nev="Helyszínek"><TULAJDONSAG nev="hid" tobberteku="N"/><TULAJDONSAG nev="hely_név" tobberteku="N"/></EGYED><EGYED nev="Látogatók"><TULAJDONSAG nev="lid" tobberteku="N"/><TULAJDONSAG nev="érkezés" tobberteku="N"/></EGYED><KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Látogatók" szamossag="N:M"/><KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Attrakciók" szamossag="1:N"/></ER_DIAGRAM>';
+        let builtInExample = '<ER_DIAGRAM nev="Vidámpark"><EGYED nev="Attrakciók"> <TULAJDONSAG nev="aid" id="I" tobberteku="N"/> <TULAJDONSAG nev="attrakció_név" id="N" tobberteku="N"/> <TULAJDONSAG nev="kezdet" id="N" tobberteku="I"/> <TULAJDONSAG nev="hossz" id="N" tobberteku="N"/></EGYED><EGYED nev="Helyszínek"><TULAJDONSAG nev="hid" id="I" tobberteku="N"/><TULAJDONSAG nev="hely_név" id="N" tobberteku="N"/></EGYED><EGYED nev="Látogatók"><TULAJDONSAG nev="lid" id="I" tobberteku="N"/><TULAJDONSAG nev="érkezés" id="N" tobberteku="N"/></EGYED><KAPCSOLAT EGYED_A ="Attrakciók" EGYED_B="Látogatók" szamossag="N:M"/><KAPCSOLAT EGYED_A ="Helyszínek" EGYED_B="Attrakciók" szamossag="1:N"/></ER_DIAGRAM>';
         let width = 1000;
         let height = 1000;
         let nodeHeight = 50;
@@ -145,7 +145,7 @@
                 let indexOfEntity = nodes.length - 1;
                 let attributes = entities[i].getElementsByTagName('TULAJDONSAG');
                 for (let j = 0; j < attributes.length; j++) {
-                    nodes.push({ name: attributes[j].getAttribute('nev'), x: Math.round(210 * Math.cos(stepAngle * i)), y: Math.round(210 * Math.sin(stepAngle * i)), type: 'attribute', multiplicity: attributes[j].getAttribute('tobberteku') });
+                    nodes.push({ name: attributes[j].getAttribute('nev'), id: attributes[j].getAttribute('id'), x: Math.round(210 * Math.cos(stepAngle * i)), y: Math.round(210 * Math.sin(stepAngle * i)), type: 'attribute', multiplicity: attributes[j].getAttribute('tobberteku') });
                     links.push({ source: indexOfEntity, target: nodes.length - 1 });
                 }
             }
@@ -207,9 +207,9 @@
                         nodeList[i].innerHTML = '<rect width="' + nodeHeight + '" height="' + nodeHeight + '" x=' + (xCoord + (nodeWidth - nodeHeight) / 2) + ' y=' + yCoord + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 40 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].multiplicity + '</text>';
                     } else if (nodes[i].type == 'attribute') {
                         nodeList[i].classList.add('attribute');
-                        nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
+                        nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" '+(nodes[i].id=='I' ? ' text-decoration="underline"' : '')+' fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
                         if (nodes[i].multiplicity == 'I') {
-                            nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><ellipse rx="' + (nodeWidth / 2 - 4 * adjustment) + '" ry="' + (nodeHeight / 2 - 4 * adjustment) + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
+                            nodeList[i].innerHTML = '<ellipse rx="' + nodeWidth / 2 + '" ry="' + nodeHeight / 2 + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><ellipse rx="' + (nodeWidth / 2 - 4 * adjustment) + '" ry="' + (nodeHeight / 2 - 4 * adjustment) + '" cx=' + (xCoord + nodeWidth / 2) + ' cy=' + (yCoord + nodeHeight / 2) + ' /><text font-family="verdana" '+(nodes[i].id=='I' ? ' text-decoration="underline"' : '')+'  fill = "black" stroke-width="0" font-size="' + fontSize + 'px" width="' + nodeWidth + '" height="' + nodeHeight + '" x=' + (xCoord + 15 * adjustment) + ' y=' + (yCoord + nodeHeight / 2 + 5 * adjustment) + '>' + nodes[i].name + '</text>';
                         }
                     } else {
                         nodeList[i].classList.add('entity');
